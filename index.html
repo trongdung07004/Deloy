@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact</title>
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="item1"></div>
+        <div class="item2">
+          <div class="items2"><a href="#">HOME</a></div>
+          <div class="items2"><a href="#">JOBS</a></div>
+          <div class="items2"><a href="#">CONTACT</a></div>
+        </div>
+      </div>
+
+      <div><h1>GENERAL INQUIRIES</h1></div>
+      <div class="input-required">
+        <div>NAME</div>
+        <div id="requiredName" class="required">required</div>
+      </div>
+      <div><input id="inputName" type="text" /></div>
+
+      <div class="input-required">
+        <div>EMAIL</div>
+        <div id="requiredEmail" class="required">required</div>
+      </div>
+      <div><input id="inputEmail" type="text" /></div>
+
+      <div>
+        <div>NATURE OF ENQUIRY</div>
+      </div>
+      <div>
+        <select>
+          <option>general1</option>
+          <option>general2</option>
+          <option>general3</option>
+        </select>
+      </div>
+
+      <div>MESSAGE</div>
+      <div><textarea class="message"></textarea></div>
+
+      <div class="input-required">
+        <div id="caluculatorMath">3 + 4 = ?</div>
+        <div id="requiredCalculator" class="required">required</div>
+      </div>
+      <div><input id="inputResult" type="text" /></div>
+
+      <div><button id="submit">SUBMIT</button></div>
+      <div><p>200 Online Users - 24 Visited Users</p></div>
+    </div>
+    <script>
+      let a = 3;
+      let b = 4;
+      function HandledSubmit() {
+        const n = 50;
+        const r = a + b;
+
+        a = Math.floor(Math.random() * n);
+        b = Math.floor(Math.random() * n);
+        const s = a.toString() + " + " + b.toString() + " = ?";
+        document.querySelector("#caluculatorMath").textContent = s;
+
+        const name = document.querySelector("#inputName").value;
+        const email = document.querySelector("#inputEmail").value;
+        const result = document.querySelector("#inputResult").value;
+
+        document.querySelector("#requiredName").textContent = "";
+        document.querySelector("#requiredEmail").textContent = "";
+        document.querySelector("#requiredCalculator").textContent = "";
+
+        if (name.length === 0) {
+          document.querySelector("#requiredName").style.color = "red";
+          document.querySelector("#requiredName").textContent =
+            "Please fill out your name";
+          document.querySelector("#inputName").select();
+        }
+
+        if (!email.includes("@gmail.com")) {
+          document.querySelector("#requiredEmail").style.color = "red";
+          document.querySelector("#requiredEmail").textContent =
+            "Please fill out a valid email format";
+          document.querySelector("#inputEmail").select();
+        }
+
+        if (email.length === 0) {
+          document.querySelector("#requiredEmail").style.color = "red";
+          document.querySelector("#requiredEmail").textContent =
+            "Please fill out your email";
+          document.querySelector("#inputEmail").select();
+        }
+
+        if (isNaN(result)) {
+          document.querySelector("#requiredCalculator").style.color = "red";
+          document.querySelector("#requiredCalculator").textContent =
+            "result must be a number";
+          document.querySelector("#inputResult").select();
+        }
+
+        if (parseInt(result) === r) {
+          alert("Thank you for your information!");
+          let inputs = document.querySelectorAll("input");
+          inputs.forEach((input) => (input.value = ""));
+        } else {
+          document.querySelector("#requiredCalculator").style.color = "red";
+          document.querySelector("#requiredCalculator").textContent =
+            "Please fill out a correct answer";
+          document.querySelector("#inputResult").select();
+        }
+
+        if (result.length === 0) {
+          document.querySelector("#requiredCalculator").style.color = "red";
+          document.querySelector("#requiredCalculator").textContent =
+            "Please fill out your result";
+          document.querySelector("#inputResult").select();
+        }
+      }
+
+      document
+        .querySelector("#submit")
+        .addEventListener("click", HandledSubmit);
+    </script>
+  </body>
+</html>
